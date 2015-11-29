@@ -13,39 +13,134 @@ App = {
 
   // LIST OF PORPOUSES
   purposesLists: {
-    es: {
-      1: 'Leer por placer',
-      2: 'Aprender un idioma',
-      3: 'Viajar más. Y más lejos.',
-      4: 'Leer por placer 2',
-      5: 'Aprender un idioma 2',
-      6: 'Viajar más. Y más lejos. 2'
+    es: [
+      { id:0, text:'Leer por placer' },
+      { id:1, text:'Aprender un idioma' },
+      { id:2, text:'Viajar más. Y más lejos.' },
+      { id:3, text:'Leer por placer 2' },
+      { id:4, text:'Aprender un idioma 2' },
+      { id:5, text:'Viajar más. Y más lejos. 2' }
+    ],
+    ca: [
+      { id:0, text:'Llegir per plaer' },
+      { id:1, text:'Apendre un idioma' },
+      { id:2, text:'Viatjar més i més lluny' },
+      { id:3, text:'Llegir per plaer2' },
+      { id:4, text:'Apendre un idioma2' },
+      { id:5, text:'Viatjar més i més lluny2' }
+    ]
+  },
+  // LIST OF ACCEPTED PURPOUSES
+  purposesAccepted: [],
+
+  // BUSINESS APP CONTROLLER
+  controller: {
+    setPurpose: function(){
+      $('.action-button').removeClass('active').addClass('blocked');
+      var items = App.purposesLists.es;
+      if(items.length >= 1){
+        var idx = Math.floor(Math.random()*items.length),
+          item = items[idx],
+          img = $('<img class="purpose-item" id="purpose_'+item.id+'" data-index="'+idx+'">');
+        img.attr('src', '/images/purposes/purpose_'+item.id+'.png');
+        img.appendTo('#purpose-wrapper');
+        img.one('load', function(){
+          $(this).addClass('in');
+          setTimeout(function(){
+            $('.action-button').removeClass('blocked');
+          },1000);
+        });
+      }else{
+        $('.action-button').removeClass('active')
+        // SHOW NO-MORE-PURPOSES MODAL
+        console.log("No more purposes!");
+      }
     },
-    ca: {
-      1: 'Llegir per plaer',
-      2: 'Apendre un idioma',
-      3: 'Viatjar més i més lluny',
-      4: 'Llegir per plaer2',
-      5: 'Apendre un idioma2',
-      6: 'Viatjar més i més lluny2'
+    acceptPurpose: function(){
+      $('#purpose-wrapper').addClass('active');
+      var element = $('.purpose-item'),
+        idx = element.data('index'),
+        item = App.purposesLists.es[idx];
+
+      App.controller.addPurposetoList(item);
+      App.purposesLists.es.splice(idx,1);
+
+      element.addClass('accept');
+      setTimeout(function(){
+        element.remove();
+        if(App.purposesAccepted.length==5){
+          $('.action-button').removeClass('active');
+          // SHOW FINISH MODAL
+          console.log("Finish?");
+        }else{
+          App.controller.setPurpose();
+        }
+        $('#purpose-wrapper').removeClass('active');
+      },1000);
+    },
+    denyPurpose: function(){
+      $('#purpose-wrapper').addClass('active');
+      var element = $('.purpose-item'),
+          idx = element.data('index');
+      element.addClass('deny');
+      setTimeout(function(){
+        element.remove();
+        App.purposesLists.es.splice(idx,1);
+        App.controller.setPurpose();
+        $('#purpose-wrapper').removeClass('active');
+      },1000);
+    },
+    addPurposetoList: function(item){
+      var idx = App.purposesAccepted.push(item),
+        newItem = $('<div class="purpose" id="purpose_'+item.id+'"><span class="index">'+idx+'</span><span class="name">'+item.text+'</span><span class="remove"></span></div>');
+      $('#topbar-badge').html(App.purposesAccepted.length)
+      newItem.appendTo('#added-purposes');
+    },
+    removeAddedPurpose: function(){
+      var item = $(this).parent(),
+        idx = item.index('#added-purposes .purpose');
+      App.purposesAccepted.splice(idx,1);
+      item.addClass('removed');
+      setTimeout(function(){
+        $('#topbar-badge').html(App.purposesAccepted.length)
+        item.addClass('erased');
+        setTimeout(function(){
+          item.remove();
+        },125);
+      },125);
     }
   },
   // USER INTERFACE CONTROLLER
   ui: {
+    // Toggle Menu List
+    toggleList: function(){
+      $('#list').toggleClass('in');
+    },
+    hideList: function(){
+      if($('#list').hasClass('in')){
+        $('#list').removeClass('in');
+      }
+    },
+    showList: function(){
+      if($('#purposes').hasClass('in')){
+        $('#list').addClass('in');
+      }
+    },
     // Hide Splash Screen
     hideHome: function(){
       $('#home').addClass('out');
       setTimeout(function(){
-        App.ui.showTutorial();
+        $('#tutorial').addClass('in');
       },250);
-    },
-    showTutorial: function(){
-      $('#tutorial').addClass('in');
     },
     hideTutorial: function(){
       $('#tutorial').removeClass('in');
       setTimeout(function(){
         $('#purposes').addClass('in');
+        $('#topbar').addClass('in');
+        setTimeout(function(){
+          App.controller.setPurpose();
+        },125);
       },125);
     },
     // Show next tutorial slide
@@ -81,13 +176,22 @@ App = {
     },
     events: function(){
       $('#app')
-        // hide home screen
-        .on('click', '#start', App.ui.hideHome)
+        // show/hide list
+        .on('click', '.remove', App.controller.removeAddedPurpose)
+        // show/hide list
+        .on('click', '#list-button', App.ui.toggleList)
+        // purpose action buttons 
+        .on('click', '#accept:not(.active)', App.controller.acceptPurpose)
+        .on('click', '#deny:not(.active)', App.controller.denyPurpose)
         // tutorial navigation
         .on('click', '#tutorial-next', App.ui.nextSlide)
         .on('click', '#tutorial-prev', App.ui.prevSlide)
         .on('click', '.tutorial-slide-nav li', App.ui.navSlide)
-        .on('click', '#tutorial-button', App.ui.hideTutorial);
+        .on('click', '#tutorial-button', App.ui.hideTutorial)
+        // generic button hover
+        .on('click', '.button', function(){$(this).addClass('active')})
+        // hide home screen
+        .one('click', '#start.ready', App.ui.hideHome);
 
       $('.mobile #tutorial').swipe( {
         swipeLeft:function() {
@@ -95,6 +199,22 @@ App = {
         },
         swipeRight:function() {
           App.ui.prevSlide();
+        }
+      });
+      $('.mobile #purpose-wrapper').swipe( {
+        swipeLeft:function() {
+          App.controller.denyPurpose();
+        },
+        swipeRight:function() {
+          App.controller.acceptPurpose();
+        }
+      });
+      $('.mobile #app').swipe( {
+        swipeUp:function() {
+          App.ui.hideList();
+        },
+        swipeDown:function() {
+          App.ui.showList();
         }
       });
     }
@@ -110,6 +230,9 @@ App = {
 
     setTimeout(function(){
       $('#app').addClass('loaded');
+      setTimeout(function(){
+        $('#start').addClass('ready');
+      },1000);
     },500);
 
     App.ui.events();

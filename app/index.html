@@ -41,21 +41,28 @@
       <div id="tutorial" class="">
           <div class="tutorial-slide">
               <div class="slide-item active" id="step-1" data-slide="1">
+                <div class="instructions">
                   <div class="image"></div>
-                  <div class="instructions">Es época de ponerse buenos propósitos.<br/>¿Quieres escribir tu lista?</div>
+                  <p>Es época de ponerse buenos propósitos.<br/>¿Quieres escribir tu lista?</p>
+                </div>
               </div>
               <div class="slide-item pending" id="step-2" data-slide="2">
+                <div class="instructions">
                   <div class="image"></div>
-                  <div class="instructions">Lee con atención<br/>cada buen proposito</div>
+                  <p>Lee con atención<br/>cada buen proposito</p>
+                </div>
               </div>
               <div class="slide-item pending" id="step-3" data-slide="3">
+                <div class="instructions">
                   <div class="image"></div>
-                  <div class="instructions">Si te animas a cumplirlo pulsa el botón derecho. Pero si no estás convendico, pulsa el izquierdo.</div>
+                  <p>Si te animas a cumplirlo pulsa el botón derecho. Pero si no estás convencido, pulsa el izquierdo</p></div>
               </div>
               <div class="slide-item pending" id="step-4" data-slide="4">
+                <div class="instructions">
                   <div class="image"></div>
-                  <div class="instructions">Cada propósito que escojas se guarda en tu lista personal. Desde aquí puedes consultarla y compartirla con los tuyos.</div>
-                  <div id="tutorial-button">Vale,<br/>entendido</div>
+                  <p>Cada propósito que escojas se guarda en tu lista personal. Desde aquí puedes consultarla y compartirla con los tuyos.</p>
+                  <div class="button" id="tutorial-button"></div>
+                </div>
               </div>
           </div>
           <ul class="tutorial-slide-nav">
@@ -75,21 +82,28 @@
       </div>
 
       <div id="topbar">
-        <div id="button"></div>
+        <div class="logo"></div>
+        <div class="title">El Reno de los buenos propósitos</div>
+        <div id="list-button"><span class="badge" id="topbar-badge">0</span></div>
       </div>
 
       <div id="purposes">
-        <div class="purpose-wrapper"></div>
+        <!--<div id="purpose-action-controller"></div>-->
+        <div id="purpose-wrapper"></div>
           <div class="action-button-wrapper accept-button">
-            <div class="action-button" id="accept"></div>
+            <div class="button action-button blocked" id="accept"></div>
           </div>
+          <div class="action-button-spacer"></div>
           <div class="action-button-wrapper deny-button">
-            <div class="action-button" id="deny"></div>
+            <div class="button action-button blocked" id="deny"></div>
           </div>
       </div>
 
+      <div id="list">
+        <div id="added-purposes"></div>
+        <div id="finish-button" class="button"></div>
+      </div>
       <div id="share"></div>
-      <div id="list"></div>
     </div>
     
 
@@ -97,6 +111,7 @@
     <!-- bower:js -->
     <script src="components/jquery/dist/jquery.js"></script>
     <script src="components/jquery-routes/jquery.routes.js"></script>
+    <script src="components/waitForImages/src/jquery.waitforimages.js"></script>
     <script src="components/jquery-touchswipe/jquery.touchSwipe.js"></script>
     <!-- endbower -->
     <!-- endbuild -->

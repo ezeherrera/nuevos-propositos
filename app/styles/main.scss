@@ -55,7 +55,7 @@ body.mobile{
         top: 0;
         left: 50%;
         margin-left: -40.7%;
-        margin-top: 2.5%;
+        margin-top: 5%;
         width: 81.4%;
         padding-bottom: 58.9%;
         height: 0;
@@ -106,27 +106,26 @@ body.mobile{
           &.pending{ transform: translateX(100%);}
           &.active{ transform: translateX(0%);}
           &.watched{ transform: translateX(-100%);}
-
           .instructions{
             position: absolute;
-            display: block;
-            width: 90%;
-            margin: 15% auto 0;
+            top: 10%;
+            width: 100%;
             font-family: arial;
             color: #fff;
             font-size: 5vw;
             line-height: 1.5em;
+            p{
+              display: block;
+              width: 90%;
+              margin: 15px auto;
+            }
           }
           .image{
-            position: absolute;
             display: block;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 80%;
+            width: 54.37%;
             height: 0px;
-            padding-bottom: 46.65%;
-            margin: 0 10% 0;
-            background: red;
+            padding-bottom: 54.37%;
+            margin: 0 auto;
             background-size: contain !important;
           }
           #tutorial-button{
@@ -134,10 +133,25 @@ body.mobile{
             width: 50%;
             height: 0;
             padding-bottom: 18.75%;
-            background: transparent url(/images/mobile/bt_tutorial.png) top center no-repeat;
-            background-size: contain;
+            background: transparent url(/images/mobile/bt_tutorial.png) 0 100% no-repeat;
+            background-size: 100% auto;
             color: $textColor;
+            &.active{
+              background-position: 0 0;
+            }
           }
+          &#step-1 .image{
+            background-image: url(/images/mobile/bullets_tutorial_0.gif);
+          }
+          &#step-2 .image{
+            background-image: url(/images/mobile/bullets_tutorial_1.gif);
+          }
+          &#step-3 .image{
+            background-image: url(/images/mobile/bullets_tutorial_2.gif);
+          }
+          &#step-4 .image{
+            background-image: url(/images/mobile/bullets_tutorial_3.gif);
+          }          
         }
       }
       .tutorial-slide-nav{
@@ -190,13 +204,20 @@ body.mobile{
       background: transparent url(/images/mobile/bg_2.jpg) top center;
       background-size: 100% auto;
       transition: all .15s linear;
-
+      &.in{
+        opacity: 1;
+        z-index: 1;
+        .action-button-wrapper{
+          transform: none;
+        }
+      }
       .action-button-wrapper{
         position: absolute;
+        z-index: 10;
         bottom: 0;
         width: 40%;
         box-sizing: border-box;
-        padding-bottom: 10%;
+        padding-bottom: 2.5%;
         transform: translateY(100%);
         transition: transform .15s ease-in-out;
         .action-button{
@@ -206,9 +227,8 @@ body.mobile{
           background-repeat: no-repeat;
           background-size: 100% auto;
           transition: transform .075s ease-in;
-          &.active,
-          &:active{
-            transform: scale(1.125);
+          &.active{
+            transform: translateY(-5%) scale(1.125);
           }
         }
         &.accept-button{
@@ -216,8 +236,7 @@ body.mobile{
           .action-button{
             background-image: url(/images/mobile/action_bt.png);
             background-position: 0 99.99%;
-            &.active,
-            &:active{
+            &.active{
               background-position: 0 66.7%;
             }
           }
@@ -234,13 +253,211 @@ body.mobile{
           }
         }
       }
-      // layer active
-      &.in{
-        opacity: 1;
-        z-index: 1;
+      .action-button-spacer{
+        position: absolute;
+        bottom: 2%;
+        left: 50%;
+        margin-left: -2px;
+        width: 0;
+        height: 0;
+        padding-bottom: 34%;
+        border-right: dashed 4px #2c3386;
+      }
+      #purpose-action-controller{
+        position: absolute;
+        z-index: 8;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(white, .5);
+      }
+      #purpose-wrapper{
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+      }
+      .purpose-item{
+        position: absolute;
+        z-index: 5;
+        top: 50px;
+        width: 86%;
+        margin: 0 7%;
+        opacity: 0;
+        transition: all .25s ease-in;
+        &.in{
+          opacity: 1;
+        }
+        &.accept{
+          transform: rotate(15deg) scale(0.8) translateX(100%);
+          transition: 1s;
+          cursor: e-resize;
+          opacity: 0;
+        }
+        &.deny{
+          transform: rotate(-15deg) scale(0.8) translateX(-100%);
+          transition: 1s;
+          cursor: e-resize;
+          opacity: 0;
+        }
+      }
+    }
 
-        .action-button-wrapper{
-          transform: none;
+
+    #topbar{
+      position: absolute;
+      z-index: 22;
+      top: 0;
+      left: 1.18%;
+      width:97.65%;
+      height: 45px; 
+      margin-top: 0;
+      background: #fff;
+      box-sizing: border-box;
+      border: solid 2px $textColor;
+      transform: translateY(-100%);
+      transition: transform .15s ease-in-out;
+
+      &.in{
+        transform: translateY(0%);
+        margin-top: 5px;
+      }
+
+      .logo{
+        display: inline-block;
+        vertical-align: middle;
+        height: 36px;
+        width: 35px;
+        margin: 3px 0 0 3px;
+        background: transparent url(/images/mobile/menu_icon_reno.png) center no-repeat;
+        background-size: contain;
+      }
+      .title{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 15px;
+        color: $textColor; 
+        margin-left: 0px;
+      }
+      #list-button{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        width: 30px;
+        height: 30px;
+        background: transparent url(/images/mobile/bt_ver_lista.png) center no-repeat;
+        background-size: contain;
+
+        .badge{
+          position: absolute;
+          top: -3px;
+          right: -6px;
+          display: inline-block;
+          height: 16px;
+          width: 16px;
+          background: transparent url(/images/mobile/notification_cercle.png) center no-repeat;
+          background-size: contain;
+          font-size: 12px;
+          line-height: 16px;
+          color: #fff;
+          text-align: center;
+        }
+      }
+    }
+
+    #list{
+      position: absolute;
+      z-index: 0;
+      bottom: 100%;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(black, .8);
+      opacity: 0;
+      transition: all .25s ease-in-out;
+      &.in{
+        z-index: 20;
+        opacity: 1;
+        bottom: 0;
+      }
+      #finish-button{
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 90%;
+        height: 0;
+        margin: 1% 5%;
+        padding-bottom: 18.8%;
+        background: transparent url(/images/mobile/bt_share_normal.png) top center no-repeat;
+        background-size: contain;
+      }
+      #added-purposes{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding-top: 60px;
+        padding-bottom: 28.125%;
+
+        .purpose{
+          position: relative;
+          width: 90%;
+          height: 0;
+          margin: 1% 5%;
+          padding-bottom: 18.8%;
+          background: transparent url(/images/mobile/bt_share_normal.png) top center no-repeat;
+          background-size: contain;
+          transition: all .125s ease-in-out;
+          &.removed{
+            opacity: 0;
+            transform: scale(0);
+          }
+          &.erased{
+            padding-bottom: 0;
+          }
+          .index{
+            position: absolute;
+            display: inline-block;
+            vertical-align: middle;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 5%;
+            height: 35px;
+            width: 35px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            line-height: 35px;
+            background: transparent url(/images/mobile/ticks_icon.png) top center no-repeat;
+            background-size: auto 100%;
+          }
+          .name{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            color: $textColor;
+            font-size: 16px;
+            text-align: center;
+            width: 80%;
+            margin-left: 20px;
+          }
+          .remove{
+            position: absolute;
+            display: inline-block;
+            top: 8%;
+            right: 3%;
+            width: 22px;
+            height: 22px;
+            background: transparent url(/images/mobile/bt_close.png) top center no-repeat;
+            background-size: contain;
+          }
         }
       }
     }
