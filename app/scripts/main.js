@@ -209,14 +209,14 @@ App = {
           App.controller.acceptPurpose();
         }
       });
-      $('.mobile #app').swipe( {
+      /*$('.mobile #app').swipe( {
         swipeUp:function() {
           App.ui.hideList();
         },
         swipeDown:function() {
           App.ui.showList();
         }
-      });
+      });*/
     }
 
   },
@@ -227,7 +227,6 @@ App = {
 
   init: function () {
     if(window.mobilecheck()) $('body').addClass('mobile'); else $('body').addClass('desktop');
-
     setTimeout(function(){
       $('#app').addClass('loaded');
       setTimeout(function(){
