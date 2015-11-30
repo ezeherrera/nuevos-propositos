@@ -1,6 +1,8 @@
 // bower:scss
 // endbower
 
+@import url(/fonts/complete_in_him_proregular/stylesheet.css);
+
 // colors
 $textColor: #009cde;
 $electricBlue: #487bde;
@@ -9,7 +11,7 @@ body {
   margin: 0;
   padding: 0;
   background: #fafafa;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "complete_in_him_proregular", Helvetica, Arial, sans-serif;
   color: #333;
 }
 
@@ -110,7 +112,7 @@ body.mobile{
             position: absolute;
             top: 10%;
             width: 100%;
-            font-family: arial;
+            font-family: 'complete_in_him_proregular', arial, sans-serif;
             color: #fff;
             font-size: 5vw;
             line-height: 1.5em;
@@ -166,8 +168,9 @@ body.mobile{
         margin: 0;
         padding: 0;
         li{
+          position: relative;
           display: inline-block;
-          margin: 0 5px;
+          margin: 0 10px;
           background: #fff;
           height: 15px;
           width: 15px;
@@ -175,11 +178,13 @@ body.mobile{
           cursor: pointer;
           &:after{
             content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
             display: inline-block;
             background: $electricBlue;
             height: 11px;
             width: 11px;
-            margin: 1px 0;
             border-radius: 50%;
             background: none;
             transition: all .125s;
@@ -462,6 +467,8 @@ body.mobile{
     }
   }
 }
+
+@import '_desktop';
 
 .browsehappy {
   margin: 0.2em 0;

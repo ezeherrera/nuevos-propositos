@@ -209,7 +209,7 @@ App = {
           App.controller.acceptPurpose();
         }
       });
-      /*$('.mobile #app').swipe( {
+      /*$('.mobile #list').swipe( {
         swipeUp:function() {
           App.ui.hideList();
         },
