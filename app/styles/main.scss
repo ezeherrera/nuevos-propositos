@@ -83,7 +83,7 @@ body.mobile{
       z-index: 0;
       width: 100%;
       height: 100%;
-      background: rgba(black, .8);
+      background: rgba(black, .9);
       opacity: 0;
       transition: opacity .25s ease-in-out;
       &.in{
@@ -299,23 +299,22 @@ body.mobile{
         }
         &.accept{
           transform: rotate(15deg) scale(0.8) translateX(100%);
-          transition: 1s;
+          transition: .5s;
           cursor: e-resize;
           opacity: 0;
         }
         &.deny{
           transform: rotate(-15deg) scale(0.8) translateX(-100%);
-          transition: 1s;
+          transition: .5s;
           cursor: e-resize;
           opacity: 0;
         }
       }
     }
 
-
     #topbar{
       position: absolute;
-      z-index: 22;
+      z-index: 40;
       top: 0;
       left: 1.18%;
       width:97.65%;
@@ -381,11 +380,11 @@ body.mobile{
       left: 0;
       height: 100%;
       width: 100%;
-      background: rgba(black, .8);
+      background: rgba(black, .9);
       opacity: 0;
       transition: all .25s ease-in-out;
       &.in{
-        z-index: 20;
+        z-index: 30;
         opacity: 1;
         bottom: 0;
       }
@@ -405,9 +404,9 @@ body.mobile{
         top: 0;
         left: 0;
         width: 100%;
-        height: 60%;
+        height: 65%;
         margin-top: 60px;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         .purpose{
           position: relative;
@@ -461,6 +460,144 @@ body.mobile{
             height: 22px;
             background: transparent url(/images/mobile/bt_close.png) top center no-repeat;
             background-size: contain;
+          }
+        }
+      }
+    }
+    .modal{
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      background: rgba(black, .9);
+      transition: all .25s ease-in;
+      &.in{
+        z-index: 50;
+        opacity: 1;
+      }
+      .image{
+        display: block;
+        width: 80.78%;
+        height: 0;
+        padding-bottom: 61.56%;
+        margin: 25% 0 10% 15%;
+        background: transparent url(/images/mobile/ill_reno_2.png) top center no-repeat;
+        background-size: contain;
+      }
+      &#checkpoint .image{
+        background-image:url(/images/mobile/ill_reno_2.png);
+      }
+      &#repeat .image{
+        background-image: url(/images/mobile/ill_reno_3.png);
+      }
+      .button{
+        display: inline-block;
+        width: 44.37%;
+        height: 0;
+        padding-bottom: 19.06%;
+        background-position: 0 100%;
+        background-repeat: no-repeat; 
+        background-size: 100% auto;
+        &.active{
+          background-position: 0 0;
+        }
+        &.button-back{
+          background-image: url(/images/mobile/bt_vamos_alla.png);
+        }
+        &.button-finish{
+          margin-left: 6%;
+          background-image: url(/images/mobile/bt_quiero_lista.png);
+        }
+        &.button-home{
+          margin-left: 6%;
+          background-image: url(/images/mobile/bt_luego.png);
+        }
+        &.button-repeat{
+          background-image: url(/images/mobile/bt_reviso.png);
+        }
+      }
+    }
+    #finish{
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+      background: transparent url(/images/mobile/bg_2.jpg) top center;
+      background-size: 100% auto;
+      transition: all .5s ease-in-out;
+      &.in{
+        z-index: 20;
+        opacity: 1;
+        .image{
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .image{
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        height: 0;
+        padding-bottom: 90%;
+        background: transparent url(/images/mobile/ill_reno_4.png) center no-repeat;
+        background-size: contain;
+        transform: scale(.25);
+        opacity: 0;
+        transition: all .5s linear;
+      }
+      .list-button{
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        margin-left: 2.5%;
+        display: inline-block;
+        width: 44.37%;
+        height: 0;
+        padding-bottom: 22.06%;
+        background-image: url(/images/mobile/bt_lista.png);
+        background-position: 0 100%;
+        background-repeat: no-repeat; 
+        background-size: 100% auto;
+        &.active{
+          background-position: 0 0;
+        }
+      }
+      .share-wrapper{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        margin-left: -47.2%;
+        display: inline-block;
+        width: 44.37%;
+        height: 0;
+        padding-bottom: 19.06%;
+        background: transparent url(/images/mobile/bg_share2_normal.png) center no-repeat;
+        background-size: contain;
+        a{
+          position: absolute;
+          top: 20%;
+          display: inline-block;
+          width: 25%;
+          height: 0;
+          padding-bottom: 23.45%;
+          background: transparent url(/images/mobile/share-icons.png) 0 0 no-repeat;
+          background-size: 100% auto;
+          &.mailto{
+            left: 9%;
+            background-position: 0 0%;
+          }
+          &.facebook{
+            left: 37.5%;
+            background-position: 0 50.5%;
+          }
+          &.twitter{
+            right: 10%;
+            background-position: 0 101.5%;
           }
         }
       }

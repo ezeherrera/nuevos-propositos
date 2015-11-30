@@ -30,15 +30,19 @@ App = {
       { id:5, text:'Viatjar més i més lluny2' }
     ]
   },
+  purposesItems: [],
   // LIST OF ACCEPTED PURPOUSES
   purposesAccepted: [],
 
   // BUSINESS APP CONTROLLER
   controller: {
+    initList: function(){
+      App.purposesItems = $.extend( true, [], App.purposesLists.es );
+    },
     setPurpose: function(){
       $('.action-button').removeClass('active').addClass('blocked');
-      var items = App.purposesLists.es;
-      if(items.length >= 1){
+      var items = App.purposesItems;
+      if(items.length > 0){
         var idx = Math.floor(Math.random()*items.length),
           item = items[idx],
           img = $('<img class="purpose-item" id="purpose_'+item.id+'" data-index="'+idx+'">');
@@ -48,47 +52,51 @@ App = {
           $(this).addClass('in');
           setTimeout(function(){
             $('.action-button').removeClass('blocked');
-          },1000);
+          },500);
         });
       }else{
         $('.action-button').removeClass('active')
-        // SHOW NO-MORE-PURPOSES MODAL
-        console.log("No more purposes!");
+        if(!App.purposesAccepted.length){
+          App.ui.showModal('repeat');
+        }else{
+          App.ui.showFinish();
+        }
       }
     },
     acceptPurpose: function(){
       $('#purpose-wrapper').addClass('active');
+      $('#accept').addClass('active');
       var element = $('.purpose-item'),
         idx = element.data('index'),
-        item = App.purposesLists.es[idx];
+        item = App.purposesItems[idx];
 
       App.controller.addPurposetoList(item);
-      App.purposesLists.es.splice(idx,1);
+      App.purposesItems.splice(idx,1);
 
       element.addClass('accept');
       setTimeout(function(){
         element.remove();
         if(App.purposesAccepted.length==5){
           $('.action-button').removeClass('active');
-          // SHOW FINISH MODAL
-          console.log("Finish?");
+          App.ui.showModal('checkpoint');
         }else{
           App.controller.setPurpose();
         }
         $('#purpose-wrapper').removeClass('active');
-      },1000);
+      },500);
     },
     denyPurpose: function(){
       $('#purpose-wrapper').addClass('active');
+      $('#deny').addClass('active');
       var element = $('.purpose-item'),
           idx = element.data('index');
       element.addClass('deny');
       setTimeout(function(){
         element.remove();
-        App.purposesLists.es.splice(idx,1);
+        App.purposesItems.splice(idx,1);
         App.controller.setPurpose();
         $('#purpose-wrapper').removeClass('active');
-      },1000);
+      },500);
     },
     addPurposetoList: function(item){
       var idx = App.purposesAccepted.push(item),
@@ -108,10 +116,43 @@ App = {
           item.remove();
         },125);
       },125);
+    },
+    restartPurposes: function(){
+      App.controller.initList();
+      App.ui.hideModal();
+      setTimeout(function(){
+        App.controller.setPurpose();
+      },250);
     }
   },
   // USER INTERFACE CONTROLLER
   ui: {
+    // hide Modal and show Purpose Screen
+    backToPurposes: function(){
+      App.ui.hideModal();
+      setTimeout(function(){
+        App.controller.setPurpose();
+      },250);
+    },
+    // hide Modal and show Finish Screen
+    goFinish: function(){
+      App.ui.hideModal();
+      setTimeout(function(){
+        App.ui.showFinish();
+      },250);
+    },
+    // show FinishPage
+    showFinish: function(modalId){
+      $('#finish').addClass('in');
+    },
+    // show modals
+    showModal: function(modalId){
+      $('.modal#'+modalId).addClass('in');
+    },
+    // show modals
+    hideModal: function(modalId){
+      $('.modal.in').removeClass('in');
+    },
     // Toggle Menu List
     toggleList: function(){
       $('#list').toggleClass('in');
@@ -176,8 +217,16 @@ App = {
     },
     events: function(){
       $('#app')
+        // Reload the app
+        .on('click', '#repeat .button-home', function(){location.reload()})
+        // Restart purposes list
+        .on('click', '#repeat .button-repeat', App.controller.restartPurposes)
+        // Go to finish Page
+        .on('click', '#checkpoint .button-finish', App.ui.goFinish)
+        // back to purposes from checkpoint modal
+        .on('click', '#checkpoint .button-back', App.ui.backToPurposes)
         // show/hide list
-        .on('click', '.remove', App.controller.removeAddedPurpose)
+        .on('click', '#list .remove', App.controller.removeAddedPurpose)
         // show/hide list
         .on('click', '#list-button', App.ui.toggleList)
         // purpose action buttons 
@@ -227,14 +276,16 @@ App = {
 
   init: function () {
     if(window.mobilecheck()) $('body').addClass('mobile'); else $('body').addClass('desktop');
+
+    App.controller.initList();
+    App.ui.events();
+
     setTimeout(function(){
       $('#app').addClass('loaded');
       setTimeout(function(){
         $('#start').addClass('ready');
-      },1000);
-    },500);
-
-    App.ui.events();
+      },500);
+    },1000);
   }
 }
 
