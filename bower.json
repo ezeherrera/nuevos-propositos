@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.1.4",
-    "jquery-routes": "*",
     "jquery-touchswipe": "~1.6.12"
   },
   "devDependencies": {
