@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Nuevos Propósitos</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    
+    <!-- BROWSER BAR COLOR -->
+    <meta name="theme-color" content="#487bde"> <!-- Chrome, Firefox OS and Opera -->
+    <meta name="msapplication-navbutton-color" content="#487bde"> <!-- Windows Phone -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#487bde"> <!-- iOS Safari -->
+
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="../styles/list.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <style>
+      #share{
+        display: none;
+        opacity: 0;
+      }
+    </style>
+    
+    <div id="share">
+      <div id="topbar">
+        <div class="logo"></div>
+        <div class="title">El Reno de los buenos propósitos</div>
+        <div id="list-button"></div>
+      </div>
+      <div id="list">
+        <h1>Esta es la lista que este año <u>SÍ</u> cumpliré</h1>
+        <div id="added-purposes"></div>
+        <a href="/" id="finish-button" class="button"></a>
+      </div>
+    </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../components/jquery/dist/jquery.js"></script>
+    <script src="../components/jquery-routes/jquery.routes.js"></script>
+    <script src="../components/jquery-touchswipe/jquery.touchSwipe.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="../scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <script>
+      $(document).on('ready', function(){
+        $(window).on('load', function(){
+          App.shareList();
+        });
+      });
+    </script>
+
+  </body>
+</html>

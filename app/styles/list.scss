@@ -1,0 +1,178 @@
+// bower:scss
+// endbower
+
+@import url(/fonts/complete_in_him_proregular/stylesheet.css);
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  font-family: "complete_in_him_proregular", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+// colors
+$textColor: #009cde;
+$electricBlue: #487bde;
+
+body.mobile{
+  background: transparent url(/images/mobile/bg_1.gif) center 8% no-repeat;
+  background-size: 100% auto;
+
+  #share{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    &.loaded{
+      //display: none;
+      opacity: 1;
+    }
+
+    #topbar{
+      position: absolute;
+      z-index: 40;
+      top: 0;
+      left: 1.18%;
+      width:97.65%;
+      height: 45px; 
+      margin-top: 5px;
+      background: #fff;
+      box-sizing: border-box;
+      border: solid 2px $textColor;
+      transition: transform .15s ease-in-out;
+
+      .logo{
+        display: inline-block;
+        vertical-align: middle;
+        height: 36px;
+        width: 35px;
+        margin: 3px 0 0 3px;
+        background: transparent url(/images/mobile/menu_icon_reno.png) center no-repeat;
+        background-size: contain;
+      }
+      .title{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 15px;
+        color: $textColor; 
+        margin-left: 0px;
+      }
+      #list-button{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        width: 30px;
+        height: 30px;
+        background: transparent url(/images/mobile/bt_ver_lista.png) center no-repeat;
+        background-size: contain;
+        opacity: .2;
+      }
+    }
+
+    #list{
+      position: absolute;
+      z-index: 30;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      transition: all .25s ease-in-out;
+      #finish-button{
+        position: absolute;
+        bottom: -5%;
+        left: 0;
+        width: 90%;
+        height: 0;
+        margin: 1% 5%;
+        padding-bottom: 32.75%;
+        background: transparent url(/images/mobile/bt_haz_tu_lista.png) 0 100% no-repeat;
+        background-size: 100% auto;
+        &.active{
+          background-position: 0 0;
+        }
+      }
+      h1{
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        display: block;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 400;
+      }
+      #added-purposes{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        margin-top: 30%;
+        overflow-y: auto;
+
+        .purpose{
+          position: relative;
+          width: 90%;
+          height: 0;
+          margin: 1% 5%;
+          padding-bottom: 18.8%;
+          background: transparent url(/images/mobile/bt_share_normal.png) top center no-repeat;
+          background-size: contain;
+          transition: all .125s ease-in-out;
+          &.removed{
+            opacity: 0;
+            transform: scale(0);
+          }
+          &.erased{
+            padding-bottom: 0;
+          }
+          .index{
+            position: absolute;
+            display: inline-block;
+            vertical-align: middle;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 5%;
+            height: 35px;
+            width: 35px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            line-height: 35px;
+            background: transparent url(/images/mobile/ticks_icon.png) top center no-repeat;
+            background-size: auto 100%;
+          }
+          .name{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            color: $textColor;
+            font-size: 16px;
+            text-align: center;
+            width: 80%;
+            margin-left: 20px;
+          }
+          .remove{
+            position: absolute;
+            display: inline-block;
+            top: 8%;
+            right: 3%;
+            width: 22px;
+            height: 22px;
+            background: transparent url(/images/mobile/bt_close.png) top center no-repeat;
+            background-size: contain;
+          }
+        }
+      }
+    }
+
+  } // #share
+
+} // body.mobile

@@ -123,6 +123,18 @@ App = {
       setTimeout(function(){
         App.controller.setPurpose();
       },250);
+    },
+    getShareUrl: function(){
+      var hash;
+      App.purposesAccepted.forEach(function(item,idx){
+        if(!hash){
+          hash='#';
+        }else{
+          hash+='-';
+        }
+        hash+=item.id;
+      });
+      console.log(hash);
     }
   },
   // USER INTERFACE CONTROLLER
@@ -136,7 +148,10 @@ App = {
     },
     // hide Modal and show Finish Screen
     goFinish: function(){
+      App.controller.getShareUrl();
+      App.ui.hideList();
       App.ui.hideModal();
+
       setTimeout(function(){
         App.ui.showFinish();
       },250);
@@ -222,6 +237,7 @@ App = {
         // Restart purposes list
         .on('click', '#repeat .button-repeat', App.controller.restartPurposes)
         // Go to finish Page
+        .on('click', '#list #finish-button', App.ui.goFinish)
         .on('click', '#checkpoint .button-finish', App.ui.goFinish)
         // back to purposes from checkpoint modal
         .on('click', '#checkpoint .button-back', App.ui.backToPurposes)
@@ -267,13 +283,8 @@ App = {
         }
       });*/
     }
-
   },
-  // ROUTER CONTROLLER
-  routes: {
-    // TO DO
-  },
-
+  // INITIALIZE MAIN APP
   init: function () {
     if(window.mobilecheck()) $('body').addClass('mobile'); else $('body').addClass('desktop');
 
@@ -286,11 +297,26 @@ App = {
         $('#start').addClass('ready');
       },500);
     },1000);
+  },
+  // INITIALIZE MAIN APP
+  shareList: function () {
+    if(window.mobilecheck()) $('body').addClass('mobile'); else $('body').addClass('desktop');
+    App.controller.initList();
+    var hash = window.location.hash,
+        indexes = hash.replace('#','').split('-'),
+        items = indexes.map(function(cur){ return App.purposesItems[cur] });
+    items.forEach(function(item, idx){
+      if(typeof item != 'undefined'){ 
+        var html = $('<div class="purpose"><span class="index">'+idx+'</span><span class="name">'+item.text+'</span></div>');
+        html.appendTo('#added-purposes');
+      }
+    });
+    setTimeout(function(){
+      $('#share').addClass('loaded');
+    },1000);
+    $('#share')
+      // generic button hover
+      .on('click', '.button', function(){$(this).addClass('active')})
   }
-}
 
-$(document).on('ready', function(){
-  $(window).on('load', function(){
-    App.init();
-  });
-});
+}

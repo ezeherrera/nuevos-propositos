@@ -395,9 +395,12 @@ body.mobile{
         width: 90%;
         height: 0;
         margin: 1% 5%;
-        padding-bottom: 18.8%;
-        background: transparent url(/images/mobile/bt_share_normal.png) top center no-repeat;
-        background-size: contain;
+        padding-bottom: 18.68%;
+        background: transparent url(/images/mobile/bt_share.png) 0 -1% no-repeat;
+        background-size: 100% auto;
+        &.active{
+          background-position: 0 100%;
+        }
       }
       #added-purposes{
         position: absolute;
