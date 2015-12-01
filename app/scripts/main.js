@@ -312,6 +312,7 @@ App = {
   // INITIALIZE MAIN APP
   shareList: function () {
     if(window.mobilecheck()) $('body').addClass('mobile'); else $('body').addClass('desktop');
+    console.log(window.mobilecheck());
     App.controller.initList();
     var hash = window.location.hash,
         indexes = hash.replace('#','').split('-'),
