@@ -109,6 +109,7 @@ App = {
         idx = item.index('#added-purposes .purpose');
       App.purposesAccepted.splice(idx,1);
       item.addClass('removed');
+      App.ui.setShareButtons();
       setTimeout(function(){
         $('#topbar-badge').html(App.purposesAccepted.length)
         item.addClass('erased');
@@ -125,7 +126,8 @@ App = {
       },250);
     },
     getShareUrl: function(){
-      var hash;
+      var hash,
+        href = window.location.origin+"/list/";
       App.purposesAccepted.forEach(function(item,idx){
         if(!hash){
           hash='#';
@@ -134,11 +136,20 @@ App = {
         }
         hash+=item.id;
       });
-      console.log(hash);
+      return href+hash;
     }
   },
   // USER INTERFACE CONTROLLER
   ui: {
+    /// set URL to share buttons
+    setShareButtons: function(){
+      var href = App.controller.getShareUrl(),
+        url = encodeURIComponent(href);
+      $('#share_mailto').attr('href', 'mailto:?&subject=Estos son mis propósitos para 2016&body='+url);
+      $('#share_facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+url);
+      $('#share_twitter').attr('href', 'http://www.twitter.com/share?text=Estos%20son%20mis%20propósitos%20para%202016%20-%20&url='+url);
+      $('#share_button').attr('href', href);
+    },
     // hide Modal and show Purpose Screen
     backToPurposes: function(){
       App.ui.hideModal();
@@ -148,10 +159,9 @@ App = {
     },
     // hide Modal and show Finish Screen
     goFinish: function(){
-      App.controller.getShareUrl();
       App.ui.hideList();
       App.ui.hideModal();
-
+      App.ui.setShareButtons();
       setTimeout(function(){
         App.ui.showFinish();
       },250);
@@ -179,6 +189,7 @@ App = {
     },
     showList: function(){
       if($('#purposes').hasClass('in')){
+        $('#list .button').removeClass('active');
         $('#list').addClass('in');
       }
     },
