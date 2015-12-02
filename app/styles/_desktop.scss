@@ -1,6 +1,304 @@
 
-//MAIN DESKTOP STYLESHEET
-
 body.desktop{
-	background: red;
+  background: transparent url(/images/desktop/bg_general.gif) center top no-repeat;
+
+	.button{
+		cursor: pointer;
+	}
+
+  #app{
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    &.loaded{
+      opacity: 1;
+    }
+
+    .header{
+      position: absolute;
+      z-index: 40;
+      top: 20px;
+      left: 50%;
+      margin-left: -310px;
+      width: 621px;
+      height: 162px;
+      background: transparent url(/images/desktop/lettering.png) top center no-repeat;
+      background-size: contain;
+    }
+
+    #home{
+      position: absolute;
+      top: 0;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    width: 100%;
+	    max-width: 1024px;
+	    height: 780px;
+      z-index: 1;
+      overflow: hidden;
+      transition: opacity .25s cubic-bezier(0, 0, .58, 1);
+      &.out{
+        z-index: 0;
+        opacity: 0;
+        #start{
+          margin-bottom: 0%;
+          transform: translateY(100%);
+          transition: transform .25s cubic-bezier(0, 0, .58, 1);
+        }
+      }
+      #start{
+      	cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: -172px;
+        width: 344px;
+        height: 411px;
+        background: transparent url(/images/desktop/bt_empezar.png) top center no-repeat;
+        background-size: contain;
+      }
+    }// #home
+
+    #tutorial{
+      position: fixed;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(black, .8);
+      opacity: 0;
+      transition: opacity .25s ease-in-out;
+      &.in{
+        opacity: 1;
+        z-index: 10;
+      }
+      .tutorial-slide-nav{
+      	display: none;
+      }
+      .tutorial-slide{
+      	display: none;
+      }
+      .tutorial-slide-desktop{
+	      position: relative;
+	      width: 100%;
+		    max-width: 1024px;
+		    max-width: 750px;
+		    margin: 0 auto;
+		    padding-top: 165px;
+		    text-align: center;
+		    font-size: 0;
+		    box-sizing: border-box;
+		    .tutorial-header{
+		    	display: block;
+		    	width: 392px;
+		    	height: 177px;
+		    	margin: 0 auto;
+		    	background: transparent url(/images/desktop/ill_reno_1.png) top center no-repeat;
+        	background-size: contain;
+		    }
+		    .tutorial-item{
+		    	position: relative;
+		    	display: inline-block;
+		    	vertical-align: top;
+		    	width: 42.5%;
+		    	font-size: 22px;
+		    	line-height: 1.25em;
+		    	color: #fff;
+		    	padding-left: 96px;
+		    	margin-top: 20px;
+		    	box-sizing: border-box;
+		    	&:nth-child(odd){
+		    		width: 52.5%;
+		    		margin-left: 5%;
+		    	}
+		    	.image{
+		    		position: absolute;
+		    		left: 0;
+		    		top: 20px;
+		    		display: inline-block;
+		    		width: 82px;
+		    		height: 82px;
+		    		background: transparent url(/images/desktop/tutorial-sprite.png) 0 0 no-repeat;
+		    	}
+		    	&#step-1 .image{
+		    		background-position: 0 0;
+		    	}
+		    	&#step-2 .image{
+		    		background-position: 100% 0%;
+		    	}
+		    	&#step-3 .image{
+		    		background-position: 0 100%;
+		    	}
+		    	&#step-4 .image{
+		    		background-position: 100% 100%;
+		    	}
+		    }
+      }
+      #tutorial-button{
+        display: block;
+        margin: 0 auto 0;
+        width: 224px;
+        height: 86px;
+        background: transparent url(/images/desktop/bt_entendido.png) 0 0 no-repeat;
+        &:hover,
+        &.active{
+          background-position: 0 100%;
+        }
+      }
+    } //#tutorial
+    #topbar{
+    	position: absolute;
+    	z-index: 50;
+      top: 0;
+	    left: 50%;
+	    transform: translateX(-50%) translateY(-100%);
+			width: 100%;
+			height: 40px;
+			max-width: 1024px;
+      &.in{
+        transform: translateX(-50%) translateY(0%);
+        margin-top: 5px;
+      }
+      .logo,
+      .title{
+      	display: none;
+      }
+			#list-button{
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        width: 160px;
+        height: 40px;
+        background: transparent url(/images/desktop/menu_icon.png) center no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        opacity: .8;
+        transition: opacity .125s ease-in-out;
+        &:hover{
+        	opacity: 1;
+        }
+				.badge{
+					//notification_cercle.png
+          position: absolute;
+          top: -3px;
+          right: -6px;
+          display: inline-block;
+          height: 16px;
+          width: 16px;
+          background: transparent url(/images/desktop/notification_cercle.png) center no-repeat;
+          background-size: contain;
+          font-size: 20px;
+          line-height: 16px;
+          color: #fff;
+          text-align: center;
+				}
+			}
+    }
+
+    #purposes{
+      position: absolute;
+      top: 0;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    width: 100%;
+	    max-width: 1024px;
+	    height: 780px;
+      opacity: 0;
+      transition: opacity .15s linear;
+      &.in{
+        opacity: 1;
+        z-index: 1;
+        .action-button-wrapper{
+          transform: none;
+        }
+      }
+      .action-button-wrapper{
+        position: absolute;
+        z-index: 10;
+        top: 470px;
+        left: 50%;
+        margin-left: -87px;
+        width: 175px;
+        box-sizing: border-box;
+        padding-bottom: 2.5%;
+        transform: translateY(100%);
+        transition: transform .15s ease-in-out;
+        .action-button{
+          width: 175px;
+          height: 216px;
+          background-repeat: no-repeat;
+          background-size: auto 100%;
+          transition: transform .075s ease-in;
+          &.active{
+            transform: translateY(-5%) scale(1.125);
+          }
+        }
+        &.accept-button{
+        	margin-left: 22px;
+          .action-button{
+            background-image: url(/images/desktop/bt_accept.png);
+            background-position: 0 100%;
+            &.active{
+              background-position: 0 0;
+            }
+          }
+        }
+        &.deny-button{
+        	margin-left: -200px;
+          .action-button{
+            background-image: url(/images/desktop/bt_deny.png);
+            background-position: 0 100%;
+            &.active,
+            &:active{
+              background-position: 0 0%;
+            }
+          }
+        }
+      }
+      .action-button-spacer{
+        position: absolute;
+        z-index: 1;
+        top: 500px;
+        left: 50%;
+        margin-left: -3px;
+        width: 7px;
+        height: 160px;
+       	background: transparent url(/images/desktop/line.png) 0 0 repeat-y; 
+      }
+      .purpose-item{
+        position: relative;
+        display:  block;
+        margin: 0 auto;
+        z-index: 5;
+        top: 150px;
+        width: 361px;
+        height: 331px;
+        opacity: 0;
+        transition: all .25s ease-in;
+        &.in{
+          opacity: 1;
+        }
+        &.accept{
+          transform: rotate(15deg) scale(0.8) translateX(100%);
+          transition: .5s;
+          cursor: e-resize;
+          opacity: 0;
+        }
+        &.deny{
+          transform: rotate(-15deg) scale(0.8) translateX(-100%);
+          transition: .5s;
+          cursor: e-resize;
+          opacity: 0;
+        }
+      }
+    }
+
+    #list{
+    	display: none;
+    } //#purposes
+	}
 }

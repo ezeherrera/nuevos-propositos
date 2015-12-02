@@ -319,7 +319,7 @@ App = {
         items = indexes.map(function(cur){ return App.purposesItems[cur] });
     items.forEach(function(item, idx){
       if(typeof item != 'undefined'){ 
-        var html = $('<div class="purpose"><span class="index">'+idx+'</span><span class="name">'+item.text+'</span></div>');
+        var html = $('<div class="purpose"><span class="index">'+(idx+1)+'</span><span class="name">'+item.text+'</span></div>');
         html.appendTo('#added-purposes');
       }
     });
