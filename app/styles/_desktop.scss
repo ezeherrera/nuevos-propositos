@@ -2,9 +2,9 @@
 body.desktop{
   background: transparent url(/images/desktop/bg_general.gif) center top no-repeat;
 
-	.button{
-		cursor: pointer;
-	}
+  .button{
+    cursor: pointer;
+  }
 
   #app{
     position: absolute;
@@ -21,7 +21,7 @@ body.desktop{
 
     .header{
       position: absolute;
-      z-index: 40;
+      z-index: 50;
       top: 20px;
       left: 50%;
       margin-left: -310px;
@@ -34,11 +34,11 @@ body.desktop{
     #home{
       position: absolute;
       top: 0;
-	    left: 50%;
-	    transform: translateX(-50%);
-	    width: 100%;
-	    max-width: 1024px;
-	    height: 780px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1024px;
+      height: 780px;
       z-index: 1;
       overflow: hidden;
       transition: opacity .25s cubic-bezier(0, 0, .58, 1);
@@ -52,7 +52,7 @@ body.desktop{
         }
       }
       #start{
-      	cursor: pointer;
+        cursor: pointer;
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -77,66 +77,66 @@ body.desktop{
         z-index: 10;
       }
       .tutorial-slide-nav{
-      	display: none;
+        display: none;
       }
       .tutorial-slide{
-      	display: none;
+        display: none;
       }
       .tutorial-slide-desktop{
-	      position: relative;
-	      width: 100%;
-		    max-width: 1024px;
-		    max-width: 750px;
-		    margin: 0 auto;
-		    padding-top: 165px;
-		    text-align: center;
-		    font-size: 0;
-		    box-sizing: border-box;
-		    .tutorial-header{
-		    	display: block;
-		    	width: 392px;
-		    	height: 177px;
-		    	margin: 0 auto;
-		    	background: transparent url(/images/desktop/ill_reno_1.png) top center no-repeat;
-        	background-size: contain;
-		    }
-		    .tutorial-item{
-		    	position: relative;
-		    	display: inline-block;
-		    	vertical-align: top;
-		    	width: 42.5%;
-		    	font-size: 22px;
-		    	line-height: 1.25em;
-		    	color: #fff;
-		    	padding-left: 96px;
-		    	margin-top: 20px;
-		    	box-sizing: border-box;
-		    	&:nth-child(odd){
-		    		width: 52.5%;
-		    		margin-left: 5%;
-		    	}
-		    	.image{
-		    		position: absolute;
-		    		left: 0;
-		    		top: 20px;
-		    		display: inline-block;
-		    		width: 82px;
-		    		height: 82px;
-		    		background: transparent url(/images/desktop/tutorial-sprite.png) 0 0 no-repeat;
-		    	}
-		    	&#step-1 .image{
-		    		background-position: 0 0;
-		    	}
-		    	&#step-2 .image{
-		    		background-position: 100% 0%;
-		    	}
-		    	&#step-3 .image{
-		    		background-position: 0 100%;
-		    	}
-		    	&#step-4 .image{
-		    		background-position: 100% 100%;
-		    	}
-		    }
+        position: relative;
+        width: 100%;
+        max-width: 1024px;
+        max-width: 750px;
+        margin: 0 auto;
+        padding-top: 165px;
+        text-align: center;
+        font-size: 0;
+        box-sizing: border-box;
+        .tutorial-header{
+          display: block;
+          width: 392px;
+          height: 177px;
+          margin: 0 auto;
+          background: transparent url(/images/desktop/ill_reno_1.png) top center no-repeat;
+          background-size: contain;
+        }
+        .tutorial-item{
+          position: relative;
+          display: inline-block;
+          vertical-align: top;
+          width: 42.5%;
+          font-size: 22px;
+          line-height: 1.25em;
+          color: #fff;
+          padding-left: 96px;
+          margin-top: 20px;
+          box-sizing: border-box;
+          &:nth-child(odd){
+            width: 52.5%;
+            margin-left: 5%;
+          }
+          .image{
+            position: absolute;
+            left: 0;
+            top: 20px;
+            display: inline-block;
+            width: 82px;
+            height: 82px;
+            background: transparent url(/images/desktop/tutorial-sprite.png) 0 0 no-repeat;
+          }
+          &#step-1 .image{
+            background-position: 0 0;
+          }
+          &#step-2 .image{
+            background-position: 100% 0%;
+          }
+          &#step-3 .image{
+            background-position: 0 100%;
+          }
+          &#step-4 .image{
+            background-position: 100% 100%;
+          }
+        }
       }
       #tutorial-button{
         display: block;
@@ -150,24 +150,25 @@ body.desktop{
         }
       }
     } //#tutorial
+
     #topbar{
-    	position: absolute;
-    	z-index: 50;
+      position: absolute;
+      z-index: 45;
       top: 0;
-	    left: 50%;
-	    transform: translateX(-50%) translateY(-100%);
-			width: 100%;
-			height: 40px;
-			max-width: 1024px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+      width: 100%;
+      height: 40px;
+      max-width: 1024px;
       &.in{
         transform: translateX(-50%) translateY(0%);
         margin-top: 5px;
       }
       .logo,
       .title{
-      	display: none;
+        display: none;
       }
-			#list-button{
+      #list-button{
         position: absolute;
         right: 10px;
         top: 5px;
@@ -179,10 +180,10 @@ body.desktop{
         opacity: .8;
         transition: opacity .125s ease-in-out;
         &:hover{
-        	opacity: 1;
+          opacity: 1;
         }
-				.badge{
-					//notification_cercle.png
+        .badge{
+          //notification_cercle.png
           position: absolute;
           top: -3px;
           right: -6px;
@@ -195,18 +196,18 @@ body.desktop{
           line-height: 16px;
           color: #fff;
           text-align: center;
-				}
-			}
-    }
+        }
+      }
+    }// topbar
 
     #purposes{
       position: absolute;
       top: 0;
-	    left: 50%;
-	    transform: translateX(-50%);
-	    width: 100%;
-	    max-width: 1024px;
-	    height: 780px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1024px;
+      height: 780px;
       opacity: 0;
       transition: opacity .15s linear;
       &.in{
@@ -233,22 +234,24 @@ body.desktop{
           background-repeat: no-repeat;
           background-size: auto 100%;
           transition: transform .075s ease-in;
+          &:hover,
           &.active{
             transform: translateY(-5%) scale(1.125);
           }
         }
         &.accept-button{
-        	margin-left: 22px;
+          margin-left: 22px;
           .action-button{
             background-image: url(/images/desktop/bt_accept.png);
             background-position: 0 100%;
+            &:hover,
             &.active{
               background-position: 0 0;
             }
           }
         }
         &.deny-button{
-        	margin-left: -200px;
+          margin-left: -200px;
           .action-button{
             background-image: url(/images/desktop/bt_deny.png);
             background-position: 0 100%;
@@ -267,7 +270,7 @@ body.desktop{
         margin-left: -3px;
         width: 7px;
         height: 160px;
-       	background: transparent url(/images/desktop/line.png) 0 0 repeat-y; 
+        background: transparent url(/images/desktop/line.png) 0 0 repeat-y; 
       }
       .purpose-item{
         position: relative;
@@ -295,10 +298,250 @@ body.desktop{
           opacity: 0;
         }
       }
+    } // purposes
+
+    .modal{
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      background: rgba(black, .9);
+      transition: all .25s ease-in;
+      &.in{
+        z-index: 50;
+        opacity: 1;
+      }
+      .image{
+        display: block;
+        width: 369px;
+        height: 276px;
+        margin: 165px auto 0;
+        background: transparent url(/images/mobile/ill_reno_2.png) top center no-repeat;
+        background-size: contain;
+      }
+      &#checkpoint .image{
+        background-image:url(/images/mobile/ill_reno_2.png);
+      }
+      &#repeat .image{
+        background-image: url(/images/mobile/ill_reno_3.png);
+      }
+      .button{
+        position: absolute;
+        top: 470px;
+        left: 50%;
+        margin-left: -101px;
+        display: inline-block;
+        width: 203px;
+        height: 87px;
+        background-position: 0 100%;
+        background-repeat: no-repeat; 
+        background-size: 100% auto;
+        cursor: pointer;
+        &:hover,
+        &.active{
+          background-position: 0 0;
+        }
+        &.button-back{
+          margin-left: 0px;
+          background-image: url(/images/mobile/bt_vamos_alla.png);
+        }
+        &.button-finish{
+          margin-left: -210px;
+          background-image: url(/images/mobile/bt_quiero_lista.png);
+        }
+        &.button-home{
+          margin-left: -210px;
+          background-image: url(/images/mobile/bt_luego.png);
+        }
+        &.button-repeat{
+          margin-left: 0px;
+          background-image: url(/images/mobile/bt_reviso.png);
+        }
+      }
     }
 
     #list{
-    	display: none;
-    } //#purposes
-	}
+      position: absolute;
+      z-index: 0;
+      bottom: 100%;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(black, .9);
+      opacity: 0;
+      transition: all .25s ease-in-out;
+      &.in{
+        z-index: 30;
+        opacity: 1;
+        bottom: 0;
+        #finish-button{
+          transform: translateY(0);
+          bottom: 20px;
+        }
+
+      }
+      #finish-button{
+        position: fixed;
+        bottom: 0px;
+        left: 50%;
+        margin-left: -203px;
+        width: 406px;
+        height: 86px;
+        background: transparent url(/images/mobile/bt_share.png) 0 -2% no-repeat;
+        background-size: 100% auto;
+        transform: translateY(100%);
+        transition: all .25s ease-in;
+        &:hover,
+        &.active{
+          background-position: 0 100%;
+        }
+      }
+      #added-purposes{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65%;
+        margin-top: 160px;
+        overflow-y: auto;
+
+        .purpose{
+          position: relative;
+          display: block;
+          width: 404px;
+          height: 87px;
+          margin: 0 auto;
+          background: transparent url(/images/desktop/bt_share_normal.png) top center no-repeat;
+          background-size: contain;
+          transition: all .125s ease-in-out;
+          &.removed{
+            opacity: 0;
+            transform: scale(0);
+          }
+          &.erased{
+            height: 0;
+          }
+          .index{
+            position: absolute;
+            display: inline-block;
+            vertical-align: middle;
+            top: 50%;
+            left: 20px;
+            margin-top: -24px;
+            height: 48px;
+            width: 49px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            line-height: 49px;
+            background: transparent url(/images/mobile/ticks_icon.png) top center no-repeat;
+            background-size: auto 100%;
+          }
+          .name{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            color: $textColor;
+            font-size: 22px;
+            text-align: center;
+            width: 80%;
+            margin-left: 20px;
+          }
+          .remove{
+            position: absolute;
+            display: inline-block;
+            top: 12px;
+            right: 17px;
+            width: 22px;
+            height: 22px;
+            background: transparent url(/images/desktop/bt_close.png) top center no-repeat;
+            background-size: contain;
+          }
+        }
+      }
+    } // #list
+
+    #finish{
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+      transition: all .5s ease-in-out;
+      &.in{
+        z-index: 20;
+        opacity: 1;
+        .image{
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .image{
+        display: block;
+        width: 431px;
+        height: 427px;
+        margin: 180px auto 0;
+        background: transparent url(/images/desktop/ill_reno_4.png) center no-repeat;
+        background-size: contain;
+        transform: scale(.25);
+        opacity: 0;
+        transition: all .5s linear;
+      }
+      .list-button{
+        position: absolute;
+        top: 640px;
+        left: 50%;
+        margin-left: 10px;
+        display: inline-block;
+        width: 179px;
+        height: 89px;
+        background-image: url(/images/mobile/bt_lista.png);
+        background-position: 0 100%;
+        background-repeat: no-repeat; 
+        background-size: 100% auto;
+        &:hover,
+        &.active{
+          background-position: 0 1%;
+        }
+      }
+      .share-wrapper{
+        position: absolute;
+        top: 640px;
+        left: 50%;
+        margin-left: -210px;
+        display: inline-block;
+        width: 219px;
+        height: 86px;
+        background: transparent url(/images/mobile/bg_share2_normal.png) center no-repeat;
+        background-size: contain;
+        a{
+          position: absolute;
+          top: 20%;
+          display: inline-block;
+          width: 25%;
+          height: 0;
+          padding-bottom: 23.45%;
+          background: transparent url(/images/mobile/share-icons.png) 0 0 no-repeat;
+          background-size: 100% auto;
+          &.mailto{
+            left: 9%;
+            background-position: 0 0%;
+          }
+          &.facebook{
+            left: 37.5%;
+            background-position: 0 50.5%;
+          }
+          &.twitter{
+            right: 10%;
+            background-position: 0 101.5%;
+          }
+        }
+      }
+    }
+  }
 }

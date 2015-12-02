@@ -162,6 +162,9 @@ App = {
       App.ui.hideList();
       App.ui.hideModal();
       App.ui.setShareButtons();
+      if($('body').hasClass('desktop')){
+        $('#purposes').removeClass('in');
+      }
       setTimeout(function(){
         App.ui.showFinish();
       },250);
