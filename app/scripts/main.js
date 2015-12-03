@@ -1,3 +1,4 @@
+/*global $:false */
 
 window.mobilecheck = function() {
   var check = false;
@@ -89,7 +90,7 @@ App = {
       $('#purpose-wrapper').addClass('active');
       $('#deny').addClass('active');
       var element = $('.purpose-item'),
-          idx = element.data('index');
+        idx = element.data('index');
       element.addClass('deny');
       setTimeout(function(){
         element.remove();
@@ -127,8 +128,8 @@ App = {
     },
     getShareUrl: function(){
       var hash,
-        href = window.location.origin+"/list/";
-      App.purposesAccepted.forEach(function(item,idx){
+        href = window.location.origin+'/list/';
+      App.purposesAccepted.forEach(function(item){
         if(!hash){
           hash='#';
         }else{
@@ -170,7 +171,7 @@ App = {
       },250);
     },
     // show FinishPage
-    showFinish: function(modalId){
+    showFinish: function(){
       $('#finish').addClass('in');
     },
     // show modals
@@ -178,7 +179,7 @@ App = {
       $('.modal#'+modalId).addClass('in');
     },
     // show modals
-    hideModal: function(modalId){
+    hideModal: function(){
       $('.modal.in').removeClass('in');
     },
     // Toggle Menu List
@@ -315,11 +316,10 @@ App = {
   // INITIALIZE MAIN APP
   shareList: function () {
     if(window.mobilecheck()) $('body').addClass('mobile'); else $('body').addClass('desktop');
-    console.log(window.mobilecheck());
     App.controller.initList();
     var hash = window.location.hash,
-        indexes = hash.replace('#','').split('-'),
-        items = indexes.map(function(cur){ return App.purposesItems[cur] });
+      indexes = hash.replace('#','').split('-'),
+      items = indexes.map(function(cur){ return App.purposesItems[cur] });
     items.forEach(function(item, idx){
       if(typeof item != 'undefined'){ 
         var html = $('<div class="purpose"><span class="index">'+(idx+1)+'</span><span class="name">'+item.text+'</span></div>');
