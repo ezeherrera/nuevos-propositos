@@ -56,7 +56,7 @@ App = {
           },500);
         });
       }else{
-        $('.action-button').removeClass('active')
+        $('.action-button').removeClass('active');
         if(!App.purposesAccepted.length){
           App.ui.showModal('repeat');
         }else{
