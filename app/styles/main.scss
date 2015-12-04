@@ -13,6 +13,12 @@ body {
   background: #fafafa;
   font-family: "complete_in_him_proregular", Helvetica, Arial, sans-serif;
   color: #333;
+  * {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */      
+  }
 }
 
 body.mobile{
@@ -368,7 +374,7 @@ body.mobile{
       .title{
         display: inline-block;
         vertical-align: middle;
-        font-size: 15px;
+        font-size: 22px;
         color: $textColor;
         margin-left: 0px;
       }
@@ -425,6 +431,38 @@ body.mobile{
         background-size: 100% auto;
         &.active{
           background-position: 0 100%;
+        }
+        .share-wrapper{
+          position: absolute;
+          width: 55%;
+          height: 100%;
+          right: 0;
+        }
+        a{
+          position: absolute;
+          top: 20%;
+          display: inline-block;
+          width: 25%;
+          height: 0;
+          padding-bottom: 23.45%;
+          background: transparent url(/images/mobile/share-icons.png) 0 0 no-repeat;
+          background-size: 100% auto;
+          transition: transform .125s ease-in-out;
+          &:hover{
+            transform: scale(1.125);
+          }
+          &.mailto{
+            left: 9%;
+            background-position: 0 0%;
+          }
+          &.facebook{
+            left: 37.5%;
+            background-position: 0 50.5%;
+          }
+          &.twitter{
+            right: 10%;
+            background-position: 0 101.5%;
+          }
         }
       }
       #added-purposes{

@@ -221,7 +221,7 @@ module.exports = function (grunt) {
         src: [
           '<%= config.dist %>/scripts/{,*/}*.js',
           '<%= config.dist %>/styles/{,*/}*.css',
-          ['<%= config.dist %>/images/{,*/}*.*','!<%= config.dist %>/images/purposes/*.*'],
+          ['<%= config.dist %>/images/{,*/}*.*'],
           //'<%= config.dist %>/styles/fonts/{,*/}*.*',
           '<%= config.dist %>/*.{ico,png}'
         ]
@@ -301,16 +301,20 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= config.dist %>/styles/main.css': [
+            '.tmp/styles/main.css',
+            '<%= config.app %>/styles/main.css'
+          ],
+          '<%= config.dist %>/styles/list.css': [
+            '.tmp/styles/list.css',
+            ['<%= config.app %>/styles/list.css','<%= config.app %>/styles/simplebar.css']
+          ]
+        }
+      }
+    },
     // uglify: {
     //   dist: {
     //     files: {
@@ -335,6 +339,8 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
+            'images/purposes/{,*/}*.*',
+            'scripts/vendor/{,*/}*.*',
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
           ]

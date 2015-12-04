@@ -1,7 +1,7 @@
 // bower:scss
 // endbower
 
-@import url(/fonts/complete_in_him_proregular/stylesheet.css);
+@import 'fonts/complete_in_him_proregular/stylesheet';
 
 
 body {
@@ -15,6 +15,7 @@ body {
 // colors
 $textColor: #009cde;
 $electricBlue: #487bde;
+$creamBlue: #7aa28e;
 
 body.mobile{
   background: transparent url(/images/mobile/bg_1.gif) center 8% no-repeat;
@@ -155,8 +156,9 @@ body.mobile{
             transform: translateY(-50%) translateX(-50%);
             color: $textColor;
             font-size: 16px;
+            line-height: 1em;
             text-align: center;
-            width: 80%;
+            width: 70%;
             margin-left: 20px;
           }
           .remove{
@@ -180,6 +182,7 @@ body.mobile{
 
 body.desktop{
   background: transparent url(/images/desktop/bg_general.gif) center top no-repeat;
+
   #share{
     position: absolute;
     display: block;
@@ -221,31 +224,46 @@ body.desktop{
         text-align: center;
         color: #fff;
         font-size: 22px;
-        font-weight: 400;
+        font-weight: 400
       }
-      #finish-button{
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        margin-left: -203px;
-        width: 443px;
-        height: 159px;
-        background: transparent url(/images/mobile/bt_haz_tu_lista.png) 0 99% no-repeat;
-        background-size: 100% auto;
-        &:hover,
-        &.active{
-          background-position: 0 0;
-        }
-      }
-      #added-purposes{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 45%;
-        margin-top: 240px;
-        overflow-y: auto;
 
+      #content-finish-button {
+          position: relative;
+          display:block;
+          width: 545px;
+          height:162px;        
+          margin: 0 auto;
+          margin-top:30px;
+          margin-bottom:30px;
+          left:20px;
+
+          #finish-button{
+            position:relative;
+            display:block;
+            width: 443px;
+            height: 162px;
+            margin:0 auto;
+            background: transparent url(/images/desktop/bt_haz_tu_lista.png) center -161px no-repeat;
+            background-size: 100% auto;
+            &:hover,
+            &.active{
+              //only crhome
+              background-position: center 0px;
+            }
+          }
+      }
+
+      #content-added-purposes {    
+        position:relative; 
+        width: 545px;
+        height:355px;
+        margin:0 auto;
+        margin-top:180px;
+      }
+
+      #added-purposes{ 
+        position:relative;       
+        width: 545px;
         .purpose{
           position: relative;
           display: block;
@@ -286,7 +304,8 @@ body.desktop{
             color: $textColor;
             font-size: 22px;
             text-align: center;
-            width: 80%;
+            width: 70%;
+            line-height: 1em;
             margin-left: 20px;
           }
           .remove{

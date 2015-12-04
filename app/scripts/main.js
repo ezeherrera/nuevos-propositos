@@ -15,12 +15,48 @@ App = {
   // LIST OF PORPOUSES
   purposesLists: {
     es: [
-      { id:0, text:'Leer por placer' },
-      { id:1, text:'Aprender un idioma' },
-      { id:2, text:'Viajar más. Y más lejos.' },
-      { id:3, text:'Leer por placer 2' },
-      { id:4, text:'Aprender un idioma 2' },
-      { id:5, text:'Viajar más. Y más lejos. 2' }
+      { id:1, text:'Volver a leer por placer' },
+      { id:2, text:'Aprender un idioma' },
+      { id:3, text:'Que la báscula no sea Territorio Peligroso' },
+      { id:4, text:'Ir de visita a aquél pueblo tan bonito y que está tan cerca...' },
+      { id:5, text:'Viajar más. ¡Y más lejos!' },
+      { id:6, text:'Hacerme famoso' },
+      { id:7, text:'Reencontrarme con un viejo amigo' },
+      { id:8, text:'Practicar un nuevo deporte' },
+      { id:9, text:'Eliminar la tecla "posponer" del despoertador' },
+      { id:10, text:'Pasar más tiempo con los míos' },
+      { id:11, text:'Volver a disfrutar de cada momento como cuando era un niño' },
+      { id:12, text:'Meditar 5 minutos al día.' },
+      { id:13, text:'Encontrar mi media naranja' },
+      { id:14, text:'Convertirme en el chef de la casa' },
+      { id:15, text:'Quedar más y chatear menos' },
+      { id:16, text:'Sonreír más' },
+      { id:17, text:'Hacer más ejercicio' },
+      { id:18, text:'Aprender a cocinar' },
+      { id:19, text:'Escuchar más mi música favorita' },
+      { id:20, text:'Cambiar de look' },
+      { id:21, text:'Reciclar Más' },
+      { id:22, text:'Ayudar más a los míos' },
+      { id:23, text:'Hacer sonreír a alguien cada día' },
+      { id:24, text:'Correr en una carrera... ¡entera!' },
+      { id:25, text:'Comer al menos un Yogur al día' },
+      { id:26, text:'Dedicarle más tiempo a mi hobby favorito' },
+      { id:27, text:'Probar algo nuevo cada semana.' },
+      { id:28, text:'Decir NO más a menudo.' },
+      { id:29, text:'Decir Sí más a menudo.' },
+      { id:30, text:'Dejar de fumar, ¡esta vez sí!' },
+      { id:31, text:'Quererme más a mí misma.' },
+      { id:32, text:'Conocer gente nueva.' },
+      { id:33, text:'Dejar de preocuparme por lo que piensen los demás.' },
+      { id:34, text:'Cambiar de look.' },
+      { id:35, text:'Hacer un curso de algo exótico.' },
+      { id:36, text:'Ver más puestas de sol.' },
+      { id:37, text:'Pasar más tiempo con mi familia.' },
+      { id:38, text:'Pasar más tiempo en la naturaleza.' },
+      { id:39, text:'Subir más a menudo por las escalera ¡vamos que tu puedes!' },
+      { id:40, text:'Tener una segunda luna de miel' },
+      { id:41, text:'Ir más al cine' },
+      { id:42, text:'Aprender a conducir' }
     ],
     ca: [
       { id:0, text:'Llegir per plaer' },
@@ -41,13 +77,15 @@ App = {
       App.purposesItems = $.extend( true, [], App.purposesLists.es );
     },
     setPurpose: function(){
-      $('.action-button').removeClass('active').addClass('blocked');
+      $('.action-button').removeClass('active');
       var items = App.purposesItems;
       if(items.length > 0){
         var idx = Math.floor(Math.random()*items.length),
           item = items[idx],
-          img = $('<img class="purpose-item" id="purpose_'+item.id+'" data-index="'+idx+'">');
-        img.attr('src', '/images/purposes/purpose_'+item.id+'.png');
+          img = $('<img class="purpose-item" id="purpose_'+item.id+'" data-index="'+idx+'">'),
+          folder = 'desktop';
+        if($('body').hasClass('mobile')){ folder='mobile'; }
+        img.attr('src', '/images/purposes/'+folder+'/ill_propositos_'+item.id+'.png');
         img.appendTo('#purpose-wrapper');
         img.one('load', function(){
           $(this).addClass('in');
@@ -67,6 +105,7 @@ App = {
     acceptPurpose: function(){
       $('#purpose-wrapper').addClass('active');
       $('#accept').addClass('active');
+      $('.action-button').addClass('blocked');
       var element = $('.purpose-item'),
         idx = element.data('index'),
         item = App.purposesItems[idx];
@@ -77,7 +116,7 @@ App = {
       element.addClass('accept');
       setTimeout(function(){
         element.remove();
-        if(App.purposesAccepted.length==5){
+        if(App.purposesAccepted.length%5 == 0){
           $('.action-button').removeClass('active');
           App.ui.showModal('checkpoint');
         }else{
@@ -89,6 +128,7 @@ App = {
     denyPurpose: function(){
       $('#purpose-wrapper').addClass('active');
       $('#deny').addClass('active');
+      $('.action-button').addClass('blocked');
       var element = $('.purpose-item'),
         idx = element.data('index');
       element.addClass('deny');
@@ -102,7 +142,8 @@ App = {
     addPurposetoList: function(item){
       var idx = App.purposesAccepted.push(item),
         newItem = $('<div class="purpose" id="purpose_'+item.id+'"><span class="index">'+idx+'</span><span class="name">'+item.text+'</span><span class="remove"></span></div>');
-      $('#topbar-badge').html(App.purposesAccepted.length)
+      App.ui.setShareButtons();
+      $('#topbar-badge').html(App.purposesAccepted.length);
       newItem.appendTo('#added-purposes');
     },
     removeAddedPurpose: function(){
@@ -146,9 +187,9 @@ App = {
     setShareButtons: function(){
       var href = App.controller.getShareUrl(),
         url = encodeURIComponent(href);
-      $('#share_mailto').attr('href', 'mailto:?&subject=Estos son mis propósitos para 2016&body='+url);
-      $('#share_facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+url);
-      $('#share_twitter').attr('href', 'http://www.twitter.com/share?text=Estos%20son%20mis%20propósitos%20para%202016%20-%20&url='+url);
+      $('.mailto').attr('href', 'mailto:?&subject=Estos son mis propósitos para 2016&body='+url);
+      $('.facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+url);
+      $('.twitter').attr('href', 'http://www.twitter.com/share?text=Estos%20son%20mis%20propósitos%20para%202016%20-%20&url='+url);
       $('#share_button').attr('href', href);
     },
     // hide Modal and show Purpose Screen
@@ -185,10 +226,14 @@ App = {
     // Toggle Menu List
     toggleList: function(){
       $('#list').toggleClass('in');
+      $('#app').toggleClass('no-scroll');
+      $('#list-button').toggleClass('open');
     },
     hideList: function(){
       if($('#list').hasClass('in')){
         $('#list').removeClass('in');
+        $('#app').removeClass('no-scroll');
+        $('#list-button').removeClass('open');
       }
     },
     showList: function(){
@@ -252,7 +297,7 @@ App = {
         // Restart purposes list
         .on('click', '#repeat .button-repeat', App.controller.restartPurposes)
         // Go to finish Page
-        .on('click', '#list #finish-button', App.ui.goFinish)
+        //.on('click', '#list #finish-button', App.ui.goFinish)
         .on('click', '#checkpoint .button-finish', App.ui.goFinish)
         // back to purposes from checkpoint modal
         .on('click', '#checkpoint .button-back', App.ui.backToPurposes)
