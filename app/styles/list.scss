@@ -15,7 +15,6 @@ body {
 // colors
 $textColor: #009cde;
 $electricBlue: #487bde;
-$creamBlue: #7aa28e;
 
 body.mobile{
   background: transparent url(/images/mobile/bg_1.gif) center 8% no-repeat;
@@ -109,6 +108,9 @@ body.mobile{
         font-weight: 400;
       }
       #added-purposes{
+        display: none;
+      }
+      #added-purposes-mobile{
         position: absolute;
         top: 0;
         left: 0;
@@ -206,6 +208,9 @@ body.desktop{
       background: transparent url(/images/desktop/lettering.png) top center no-repeat;
       background-size: contain;
     }
+    #topbar{
+      display: none;
+    }
     #list{
       position: absolute;
       z-index: 30;
@@ -252,7 +257,9 @@ body.desktop{
             }
           }
       }
-
+      #added-purposes-mobile{
+        display: none;
+      }
       #content-added-purposes {    
         position:relative; 
         width: 545px;

@@ -23,7 +23,7 @@ App = {
       { id:6, text:'Hacerme famoso' },
       { id:7, text:'Reencontrarme con un viejo amigo' },
       { id:8, text:'Practicar un nuevo deporte' },
-      { id:9, text:'Eliminar la tecla "posponer" del despoertador' },
+      { id:9, text:'Eliminar la tecla "posponer" del despertador' },
       { id:10, text:'Pasar más tiempo con los míos' },
       { id:11, text:'Volver a disfrutar de cada momento como cuando era un niño' },
       { id:12, text:'Meditar 5 minutos al día.' },
@@ -35,11 +35,11 @@ App = {
       { id:18, text:'Aprender a cocinar' },
       { id:19, text:'Escuchar más mi música favorita' },
       { id:20, text:'Cambiar de look' },
-      { id:21, text:'Reciclar Más' },
+      { id:21, text:'Reciclar más' },
       { id:22, text:'Ayudar más a los míos' },
       { id:23, text:'Hacer sonreír a alguien cada día' },
       { id:24, text:'Correr en una carrera... ¡entera!' },
-      { id:25, text:'Comer al menos un Yogur al día' },
+      { id:25, text:'Comer al menos un yogur al día' },
       { id:26, text:'Dedicarle más tiempo a mi hobby favorito' },
       { id:27, text:'Probar algo nuevo cada semana.' },
       { id:28, text:'Decir NO más a menudo.' },
@@ -48,7 +48,7 @@ App = {
       { id:31, text:'Quererme más a mí misma.' },
       { id:32, text:'Conocer gente nueva.' },
       { id:33, text:'Dejar de preocuparme por lo que piensen los demás.' },
-      { id:34, text:'Cambiar de look.' },
+      //{ id:34, text:'Cambiar de look.' },
       { id:35, text:'Hacer un curso de algo exótico.' },
       { id:36, text:'Ver más puestas de sol.' },
       { id:37, text:'Pasar más tiempo con mi familia.' },
@@ -190,7 +190,7 @@ App = {
       $('.mailto').attr('href', 'mailto:?&subject=Estos son mis propósitos para 2016&body='+url);
       $('.facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+url);
       $('.twitter').attr('href', 'http://www.twitter.com/share?text=Estos%20son%20mis%20propósitos%20para%202016%20-%20&url='+url);
-      $('#share_button').attr('href', href);
+      //$('#share_button').attr('href', href);
     },
     // hide Modal and show Purpose Screen
     backToPurposes: function(){
@@ -218,10 +218,12 @@ App = {
     // show modals
     showModal: function(modalId){
       $('.modal#'+modalId).addClass('in');
+      $('#app').addClass('no-scroll');
     },
     // show modals
     hideModal: function(){
       $('.modal.in').removeClass('in');
+      $('#app').removeClass('no-scroll');
     },
     // Toggle Menu List
     toggleList: function(){
@@ -297,13 +299,14 @@ App = {
         // Restart purposes list
         .on('click', '#repeat .button-repeat', App.controller.restartPurposes)
         // Go to finish Page
-        //.on('click', '#list #finish-button', App.ui.goFinish)
+        .on('click', '#list #finish-button', App.ui.goFinish)
         .on('click', '#checkpoint .button-finish', App.ui.goFinish)
         // back to purposes from checkpoint modal
         .on('click', '#checkpoint .button-back', App.ui.backToPurposes)
         // show/hide list
         .on('click', '#list .remove', App.controller.removeAddedPurpose)
         // show/hide list
+        .on('click', '#share_button', App.ui.toggleList)
         .on('click', '#list-button', App.ui.toggleList)
         // purpose action buttons 
         .on('click', '#accept:not(.active)', App.controller.acceptPurpose)
@@ -364,11 +367,15 @@ App = {
     App.controller.initList();
     var hash = window.location.hash,
       indexes = hash.replace('#','').split('-'),
-      items = indexes.map(function(cur){ return App.purposesItems[cur] });
+      items = indexes.map(function(cur){ return $.grep(App.purposesItems, function(e){ return e.id == cur; })[0]; });
     items.forEach(function(item, idx){
       if(typeof item != 'undefined'){ 
         var html = $('<div class="purpose"><span class="index">'+(idx+1)+'</span><span class="name">'+item.text+'</span></div>');
-        html.appendTo('#added-purposes');
+        if($('body').hasClass('desktop')){
+          html.appendTo('#added-purposes');
+        }else{
+          html.appendTo('#added-purposes-mobile');
+        }
       }
     });
     setTimeout(function(){

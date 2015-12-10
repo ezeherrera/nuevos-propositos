@@ -2,10 +2,24 @@
 <html lang="">
   <head>
     <meta charset="utf-8">
-    <title>Nuevos Propósitos</title>
+    <title>El Reno de los Nuevos Propósitos</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+    <!-- Facebook Open Graph Markup -->
+    <meta property='og:type' content="website" />
+    <meta property='og:site_name' content='El Reno de los Buenos Propósitos' />
+    <meta property='og:title' content='¡Estos son los propósitos que este año SÍ cumpliré!' />
+    <meta property='og:description' content='¡Es época de proponerse buenos propósitos! ¿Quieres escribir tu lista?' />
+    <meta property='og:image' content="http://http://www.elrenodelosbuenospropositos.es/images/static/facebook_image.jpg" />
     
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@danonesonrisas">
+    <meta name="twitter:title" content="¡Estos son los propósitos que este año SÍ cumpliré!">
+    <meta name="twitter:description" content="¡Es época de proponerse buenos propósitos! ¿Quieres escribir tu lista?">
+    <meta name="twitter:image" content="http://http://www.elrenodelosbuenospropositos.es/images/static/twitter_card.jpg">
+
     <!-- BROWSER BAR COLOR -->
     <meta name="theme-color" content="#487bde"> <!-- Chrome, Firefox OS and Opera -->
     <meta name="msapplication-navbutton-color" content="#487bde"> <!-- Windows Phone -->
@@ -44,15 +58,20 @@
 
     <div id="share">
       <div class="header"></div>
+      <div id="topbar">
+        <div class="logo"></div>
+        <div class="title">El Reno de los buenos propósitos</div>
+        <div id="list-button"></div>
+      </div>
       <div id="list">
         <h1>Esta es la lista que este año <u>SÍ</u> cumpliré</h1>
           <div id="content-added-purposes" class="simplebar" data-simplebar-direction="vertical">     
-        <div id="added-purposes"></div>
+            <div id="added-purposes"></div>
           </div>
-
+          <div id="added-purposes-mobile"></div>
           <div id="content-finish-button">
-        <a href="/" id="finish-button" class="button"></a>
-      </div>
+            <a href="/" id="finish-button" class="button"></a>
+          </div>
       </div>
     </div>
 

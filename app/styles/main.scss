@@ -374,7 +374,7 @@ body.mobile{
       .title{
         display: inline-block;
         vertical-align: middle;
-        font-size: 22px;
+        font-size: 5.5vw; //22px;
         color: $textColor;
         margin-left: 0px;
       }
@@ -427,10 +427,10 @@ body.mobile{
         height: 0;
         margin: 1% 5%;
         padding-bottom: 18.68%;
-        background: transparent url(/images/mobile/bt_share.png) 0 -1% no-repeat;
+        background: transparent url(/images/mobile/bt_share.png) 0 100% no-repeat;
         background-size: 100% auto;
         &.active{
-          background-position: 0 100%;
+          background-position: 0 -1%;
         }
         .share-wrapper{
           position: absolute;
@@ -513,19 +513,21 @@ body.mobile{
             transform: translateY(-50%) translateX(-50%);
             color: $textColor;
             font-size: 16px;
+            line-height: 1.2em;
             text-align: center;
-            width: 80%;
-            margin-left: 20px;
+            width: 70%;
+            margin: 0 25px 0 15px;
           }
           .remove{
             position: absolute;
             display: inline-block;
-            top: 8%;
-            right: 3%;
+            top: -7.5%;
+            right: -1%;
             width: 22px;
             height: 22px;
-            background: transparent url(/images/mobile/bt_close.png) top center no-repeat;
-            background-size: contain;
+            padding: 10px;
+            background: transparent url(/images/mobile/bt_close.png) center no-repeat;
+            background-size: 22px 22px;
           }
         }
       }
